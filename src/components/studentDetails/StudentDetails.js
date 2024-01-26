@@ -66,7 +66,7 @@ function StudentDetails() {
 
       {error && <p className="error-message">{error}</p>}
 
-      {studentDetails && (
+      {!error && studentDetails && (
         <div className="student-details">
           <h3>Student ID: {studentDetails.StudentID}</h3>
           <p>Roll Number: {studentDetails.Roll}</p>
@@ -117,7 +117,7 @@ function StudentDetails() {
         </div>
       )}
 
-      {studentDetails && (
+      {!error && studentDetails && (
         <button className="downloadBtn" onClick={handleDownloadPDF}>
           Download as PDF
         </button>
