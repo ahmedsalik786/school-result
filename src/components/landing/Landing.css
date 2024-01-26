@@ -1,16 +1,17 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Arial", sans-serif;
-}
+/* Landing.css */
 
 .landing-page {
+  margin: 40px;
+  margin-top: 20px;
   text-align: center;
-  padding: 50px;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 header {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 header h1 {
@@ -24,18 +25,31 @@ header p {
 }
 
 .animated-section {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .animation-box {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 150px;
   /* background-color: #3498db; */
   margin: 0 auto;
-  /* border-radius: 50%; */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-section {
+.logo {
+  height: 100%; /* Adjust as needed */
+}
+
+.animated-section p {
+  font-size: 16px;
+  color: #666;
+}
+
+.about-us-section,
+.admissions-section {
   margin-bottom: 30px;
 }
 
@@ -61,7 +75,4 @@ p {
 
 .btn:hover {
   background-color: #219653;
-}
-.logo {
-  height: 200px;
 }
