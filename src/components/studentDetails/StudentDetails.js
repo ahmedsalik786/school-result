@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import html2pdf from "html2pdf.js";
-import "./studentDetail.css"; // Import your CSS file for styling
-
-// ... (other imports)
+import "./studentDetail.css";
 
 function StudentDetails() {
   const [studentId, setStudentId] = useState();
   const [studentDetails, setStudentDetails] = useState(null);
   const [error, setError] = useState(null);
   const [studentList, setStudentList] = useState([]);
-  const passFailed =
-    studentDetails && studentList.map((item) => item.value < 30)
-      ? "Failed"
-      : "Pass";
+  const [flag, setFlag] = useState("Pass");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +43,16 @@ function StudentDetails() {
     const element = document.getElementById("student-details-container");
     html2pdf(element);
   };
+
+  useEffect(() => {
+    // Update the flag state only when studentDetails changes
+    if (studentDetails) {
+      const isFailed = Object.values(studentDetails).some(
+        (value) => value < 30
+      );
+      setFlag(isFailed ? "Failed" : "Pass");
+    }
+  }, [studentDetails]);
 
   return (
     <div id="student-details-container" className="student-details-container">
@@ -111,7 +116,7 @@ function StudentDetails() {
           </p>
           <p>Total: {studentDetails.total}</p>
           <p>
-            Percentage: {studentDetails.percentage}% - <span>{passFailed}</span>
+            Percentage: {studentDetails.percentage}% - <span>{flag}</span>
           </p>
           <p>Grade: {studentDetails.grade}</p>
         </div>
