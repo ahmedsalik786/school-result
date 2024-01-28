@@ -1,9 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../asset/schoolLogo.png";
 import "./Landing.css"; // Import your CSS file for styling
 
-function Landing() {
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
+function Landing({ studentId, setStudentId }) {
+  const [show, setShow] = useState(false);
+  const naviagte = useNavigate();
+
+  const handleClose = () => {
+    // setShow(false);
+    // return;
+    naviagte("/dashboard");
+  };
+  console.log("studentId", studentId);
+  const handleShow = () => setShow(true);
   return (
     <div className="landing-page">
       <header>
@@ -31,10 +44,44 @@ function Landing() {
       <section className="admissions-section">
         <h2>Admissions Open</h2>
         <p>Enroll your child today for a bright future.</p>
-        <Link to="/dashboard" className="btn">
+        {/* <Link to="/dashboard" className="btn">
           Check your Results
-        </Link>
+        </Link> */}
       </section>
+
+      <div className="popup">
+        <>
+          <Button variant="primary" onClick={handleShow}>
+            Check your Results
+          </Button>
+
+          <Modal show={show} onHide={handleClose}>
+            {/* <Modal.Header closeButton>
+              <Modal.Title>Enter</Modal.Title>
+            </Modal.Header> */}
+            <Modal.Body>
+              <input
+                onChange={(e) => setStudentId(e.target.value)}
+                type="number"
+                name=""
+                placeholder="Enter Student Id"
+                id=""
+              />
+              <input type="text" name="" id="" placeholder="Enter name" />
+            </Modal.Body>
+            <Modal.Footer className="footer">
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Link to="/dashboard">
+                <Button className="btn" variant="primary">
+                  Search
+                </Button>
+              </Link>
+            </Modal.Footer>
+          </Modal>
+        </>
+      </div>
     </div>
   );
 }

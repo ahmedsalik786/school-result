@@ -1,10 +1,10 @@
 import React from "react";
 import Landing from "../components/landing/Landing";
 
-function LandingPage() {
+function LandingPage({ studentId, setStudentId }) {
   return (
     <div>
-      <Landing />
+      <Landing studentId={studentId} setStudentId={setStudentId} />
     </div>
   );
 }

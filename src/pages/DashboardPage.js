@@ -1,10 +1,10 @@
 import React from "react";
 import StudentDetails from "../components/studentDetails/StudentDetails";
 
-function DashboardPage() {
+function DashboardPage({ studentId, setStudentId }) {
   return (
     <div>
-      <StudentDetails />
+      <StudentDetails studentId={studentId} setStudentId={setStudentId} />
     </div>
   );
 }

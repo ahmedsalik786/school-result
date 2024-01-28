@@ -1,3 +1,18 @@
+/* Add this to your studentDetail.css */
+
+.logo {
+  width: 100px; /* Adjust size as needed */
+  height: 100px;
+  /* position: absolute; */
+  top: 10px; /* Adjust positioning as needed */
+  left: 10px;
+}
+
+.header {
+  position: relative; /* This ensures that the logo is positioned relative to its parent */
+  text-align: center;
+}
+
 .student-details-container {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
@@ -47,6 +62,7 @@ button:hover {
 }
 
 .student-details {
+  position: relative; /* To position the logo relative to this div */
   margin-top: 20px;
   border: 1px solid #ddd;
   padding: 15px 30px;
@@ -90,4 +106,16 @@ th {
 .failed-row {
   color: red;
   font-weight: bold;
+}
+.student-image {
+  width: 100px; /* Adjust size as needed */
+  height: auto;
+  margin-top: 10px;
+  border-radius: 50%; /* Optional: for rounded image */
+}
+
+.idBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
 }

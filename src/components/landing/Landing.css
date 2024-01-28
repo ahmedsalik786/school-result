@@ -76,3 +76,126 @@ p {
 .btn:hover {
   background-color: #219653;
 }
+
+/* Add these styles to your Landing.css file */
+/* Landing.css */
+
+/* Existing styles... */
+
+/* Enhanced Modal Styles */
+.modal-content {
+  background-color: white; /* Clean white background */
+  border-radius: 10px; /* Smooth rounded corners */
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  border: none; /* Remove default border */
+}
+
+.modal-header {
+  border-bottom: none; /* Remove the border from the header */
+  padding: 20px 20px 0 20px; /* Adjust padding */
+  background-color: #f7f7f7; /* Light background for the header */
+}
+
+.modal-title {
+  color: #333; /* Dark color for the title */
+  font-weight: 600; /* Make the title bold */
+  font-size: 1.2rem; /* Adjust the font size */
+}
+
+.modal-body {
+  padding: 20px; /* Consistent padding */
+  color: #555; /* Slightly dark text for readability */
+  line-height: 1.5; /* Improved line height for readability */
+}
+
+.modal-footer {
+  border-top: none; /* Remove the border from the footer */
+  padding: 20px; /* Adjust padding */
+  background-color: #f7f7f7; /* Consistent background with the header */
+}
+
+/* Input Styles */
+.modal-body input {
+  width: 100%; /* Full width */
+  padding: 10px; /* Comfortable padding */
+  margin-bottom: 20px; /* Space below the input */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ddd; /* Subtle border */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+.modal-footer .btn {
+  padding: 8px 15px; /* Adjust padding as needed */
+  font-size: 16px; /* Font size for the buttons */
+  font-weight: 500; /* Font weight */
+  letter-spacing: 0.5px; /* Letter spacing for better readability */
+  border-radius: 5px; /* Rounded corners */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Button Styles - Enhancement */
+.btn-primary {
+  background-color: #007bff; /* Background color for the Search button */
+  color: #fff; /* Text color */
+  border-color: #007bff; /* Border color */
+}
+
+.btn-primary:hover {
+  background-color: #0069d9; /* Darken background on hover */
+  border-color: #0062cc; /* Border color on hover */
+}
+
+.btn-secondary {
+  background-color: #6c757d; /* Background color for the Close button */
+  color: #fff; /* Text color */
+  border-color: #6c757d; /* Border color */
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268; /* Darken background on hover */
+  border-color: #545b62; /* Border color on hover */
+}
+
+/* Centering the modal */
+.modal-dialog {
+  position: fixed; /* Fixed position */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for exact centering */
+  z-index: 1050; /* Above other content */
+}
+
+/* Additional Style for Input Fields in Modal */
+.modal-body input {
+  width: 100%; /* Full width */
+  padding: 8px 10px; /* Padding */
+  margin: 10px 0; /* Margin for spacing */
+  border-radius: 4px; /* Rounded corners */
+  border: 1px solid #ced4da; /* Border color */
+  box-sizing: border-box; /* Box sizing to include padding and border */
+}
+
+/* Focus Style for Input Fields */
+.modal-body input:focus {
+  border-color: #80bdff; /* Highlight color when focused */
+  outline: 0; /* Remove default outline */
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Subtle shadow */
+}
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .modal-dialog {
+    width: 90%; /* Full width on smaller screens */
+  }
+}
+
+/* Additional styles for backdrop */
+.modal-backdrop.show {
+  opacity: 0.5; /* Darken the backdrop */
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+}

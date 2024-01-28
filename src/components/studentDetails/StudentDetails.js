@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import html2pdf from "html2pdf.js";
 import "./studentDetail.css";
+import Logo from "../../asset/schoolLogo.png";
 
-function StudentDetails() {
-  const [studentId, setStudentId] = useState();
+function StudentDetails({ studentId, setStudentId }) {
   const [studentDetails, setStudentDetails] = useState(null);
   const [error, setError] = useState(null);
   const [studentList, setStudentList] = useState([]);
-  const [flag, setFlag] = useState("Pass");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`https://sheetdb.io/api/v1/zvoy16yukk5k5`);
-        setStudentList(res.data);
+        const res = await axios.get(
+          `https://script.googleusercontent.com/macros/echo?user_content_key=UWmerk_hRtGDTkMfORKxTwVPR7RRusH2DC3I0kMs0WbCcaXUfyNiUve_psE6CM9WGRdnV2wRiSf9fqBxI9c8h82Cfk1uPnzMm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNN339hbrmSkya_yWBa1IMSSfDNSk8RYoGGC9CwWslCoKLLpOgdWU0i2y_TzRGbSpyQ65vvhKwS2_8rSbZSGlYwmLwuOb8LmzQ&lib=MTjz2KoLtIiMLh3NAW9o_G3Mvq-Peybp_`
+        );
+        // console.log(res.data.data);
+        setStudentList(res.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("Error fetching student list. Please try again.");
@@ -24,15 +26,22 @@ function StudentDetails() {
     fetchData();
   }, []);
 
+  console.log("studentId", studentId);
+
+  useEffect(() => {
+    fetchStudentDetail();
+  }, [studentId]);
+
   const fetchStudentDetail = () => {
     setStudentDetails({});
     setError(null);
 
     const foundStudent = studentList.find(
-      (student) => student.StudentID === studentId
+      (student) => student.StudentID === Number(studentId)
     );
 
     if (foundStudent) {
+      console.log("foundStudent", foundStudent);
       setStudentDetails(foundStudent);
     } else {
       setError("Student not found. Please enter a valid Student ID.");
@@ -41,41 +50,54 @@ function StudentDetails() {
 
   const handleDownloadPDF = () => {
     const element = document.getElementById("student-details-container");
-    html2pdf(element);
+    const options = {
+      margin: 10,
+      filename: "student-details.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    };
+    html2pdf().from(element).set(options).save();
   };
-
-  useEffect(() => {
-    // Update the flag state only when studentDetails changes
-    if (studentDetails) {
-      const isFailed = Object.values(studentDetails).some(
-        (value) => value < 30
-      );
-      setFlag(isFailed ? "Failed" : "Pass");
-    }
-  }, [studentDetails]);
 
   return (
     <div id="student-details-container" className="student-details-container">
-      <h2>Student Details</h2>
-      <div className="input-container">
+      <div className="header">
+        <h2>Student Results</h2>
+      </div>
+      {/* <div className="input-container">
         <label>
           Enter Student ID:
           <input
             type="text"
             value={studentId}
-            onChange={(e) => setStudentId(String(e.target.value))}
+            onChange={(e) => setStudentId(e.target.value)}
           />
         </label>
         <button onClick={fetchStudentDetail}>Get Student Results</button>
-      </div>
+      </div> */}
 
       {error && <p className="error-message">{error}</p>}
 
       {!error && studentDetails && (
-        <div className="student-details">
-          <h3>Student ID: {studentDetails.StudentID}</h3>
-          <p>Roll Number: {studentDetails.Roll}</p>
-          <p>Name: {studentDetails.Name}</p>
+        <div className="student-details" id="student-details">
+          <div className="idBox">
+            <img src={Logo} alt="Logo" className="logo" />
+
+            <div>
+              <h3> HOLY NAME HIGHER SECONDARY SCHOOL</h3>
+              <h3>Final Examination</h3>
+              <h3>Student ID: {studentDetails.StudentID}</h3>
+
+              <p>Roll Number: {studentDetails.Roll}</p>
+              <p>Name: {studentDetails.Name}</p>
+            </div>
+            <img
+              src={studentDetails.images}
+              alt="Student"
+              className="student-image"
+            />
+          </div>
 
           <div className="marks-table-container">
             <table className="marks-table">
@@ -97,7 +119,8 @@ function StudentDetails() {
                     key !== "percentage" &&
                     key !== "Pass/Failed" &&
                     key !== "Remarks" &&
-                    key !== "grade"
+                    key !== "grade" &&
+                    key !== "images"
                   ) {
                     return (
                       <tr key={key} className={isFailed ? "failed-row" : ""}>
@@ -116,7 +139,8 @@ function StudentDetails() {
           </p>
           <p>Total: {studentDetails.total}</p>
           <p>
-            Percentage: {studentDetails.percentage}% - <span>{flag}</span>
+            Percentage: {studentDetails.percentage}% -{" "}
+            <span>{studentDetails.percentage < 60 ? "Failed" : "Pass"}</span>
           </p>
           <p>Grade: {studentDetails.grade}</p>
         </div>
