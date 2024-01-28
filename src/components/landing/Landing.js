@@ -11,10 +11,12 @@ function Landing({ studentId, setStudentId }) {
   const naviagte = useNavigate();
 
   const handleClose = () => {
-    // setShow(false);
-    // return;
-    naviagte("/dashboard");
+    setShow(false);
   };
+
+  function handleSubmit() {
+    naviagte("/dashboard");
+  }
   console.log("studentId", studentId);
   const handleShow = () => setShow(true);
   return (
@@ -73,11 +75,10 @@ function Landing({ studentId, setStudentId }) {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Link to="/dashboard">
-                <Button className="btn" variant="primary">
-                  Search
-                </Button>
-              </Link>
+
+              <Button onClick={handleSubmit} className="btn" variant="primary">
+                Search
+              </Button>
             </Modal.Footer>
           </Modal>
         </>
