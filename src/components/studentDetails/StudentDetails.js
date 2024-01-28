@@ -15,7 +15,7 @@ function StudentDetails({ studentId, setStudentId }) {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `https://script.googleusercontent.com/macros/echo?user_content_key=UWmerk_hRtGDTkMfORKxTwVPR7RRusH2DC3I0kMs0WbCcaXUfyNiUve_psE6CM9WGRdnV2wRiSf9fqBxI9c8h82Cfk1uPnzMm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNN339hbrmSkya_yWBa1IMSSfDNSk8RYoGGC9CwWslCoKLLpOgdWU0i2y_TzRGbSpyQ65vvhKwS2_8rSbZSGlYwmLwuOb8LmzQ&lib=MTjz2KoLtIiMLh3NAW9o_G3Mvq-Peybp_`
+          `https://script.googleusercontent.com/macros/echo?user_content_key=iW_q4GaFf-lWdEK2kw6Iw65ny-tMG14Fuqelu0OoslXKbnviq4EQekFvpLZIR5DvDkV7_5h18jfqy0_x7orAVL1eRsurZoTlm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnITC2tXMWJULi4ih2AaCn5qYyh3fc1F3pATocEG-tW0dXrigxObLc924wTHbqfk1Dow8NoNqt2G-DR6GIAgnBJ0xBnWUEMeDNQ&lib=MTjz2KoLtIiMLh3NAW9o_G3Mvq-Peybp_`
         );
         // console.log(res.data.data);
         setStudentList(res.data.data);
@@ -108,7 +108,7 @@ function StudentDetails({ studentId, setStudentId }) {
                   </div>
                   <img
                     src={studentDetails.images}
-                    alt="Student"
+                    alt=""
                     className="student-image"
                   />
                 </div>
